@@ -1,6 +1,7 @@
 name: Maven Build and Test
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - master
@@ -12,8 +13,12 @@ jobs:
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
+      
     - name: Setup JAVA
       uses: actions/setup-java@v3
       with:
         distribution: 'temurin' # See 'Supported distributions' for available options
         java-version: '17'
+    - name: build using maven
+      run: mvn clean install
+      
